@@ -10,55 +10,49 @@
     />
   </head>
   <body>
-    <div id="startPage" class="page">
-      <h1 class="main-title">5초 준다</h1>
-      <div class="dora-speech">진구야 5초 안에 맞춰야 돼!!</div>
+    <div id="startPage" class="page hidden">
+      <h1 class="main-title">5초 준다!!</h1>
+
       <button type="button" id="startButton" class="pixel-btn">
         게임 시작
       </button>
     </div>
 
-    <div id="gamePage" class="page hidden">
+    <div id="gamePage" class="page">
       <div id="timer">5</div>
-      <div id="questionContainer">
-        <h2 id="questionText">문제가 표시됩니다</h2>
+      <div id="questionBox">
+        <img src="/image/말풍선.png" alt="말풍선" class="bubble-img" />
+        <h2 id="questionText">도라에몽이 가장 좋아하는 음식은?</h2>
       </div>
 
       <div id="world">
         <div id="doorLeft" class="door-wrapper">
-          <div class="door-label" id="labelLeft"></div>
+          <div class="door-label">단팥빵</div>
           <img src="/image/doorPixel.png" alt="문" />
         </div>
         <div id="doorRight" class="door-wrapper">
-          <div class="door-label" id="labelRight"></div>
+          <div class="door-label">피자</div>
           <img src="/image/doorPixel.png" alt="문" />
         </div>
-
         <div id="player">
-          <img src="/image/jingooPixel.png" alt="진구" />
+          <img src="/image/realJingoo.png" alt="진구" />
         </div>
-      </div>
-
-      <div id="feedback" class="hidden">
-        <img id="feedbackImg" src="" alt="피드백" />
       </div>
     </div>
 
     <div id="resultPage" class="page hidden">
       <div class="result-box">
-        <h1 class="main-title" style="font-size: 60px">게임 종료</h1>
-        <p id="finalScoreText"></p>
-        <button
-          type="button"
-          id="retryButton"
-          class="pixel-btn"
-          style="position: static; transform: none"
-        >
+        <h1 class="end-title small">게임 종료</h1>
+        <!-- <p id="finalScoreText">당신의 점수는 10 / 12점!</p> -->
+        <div id="scoreBoard">
+          <div class="score-label">FINAL SCORE</div>
+          <div id="finalScoreText">10 / 12</div>
+          <div class="rank-text">참 잘했어요! ^_^ b</div>
+        </div>
+        <button type="button" id="retryButton" class="pixel-btn">
           다시 하기
         </button>
       </div>
     </div>
-
-    <script src="script.js"></script>
   </body>
 </html>
