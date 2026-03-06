@@ -170,12 +170,12 @@ html {
 /* 진구 이미지 설정 */
 #player {
   position: absolute;
-  bottom: 5%;
+  bottom: -7%;
   left: 50%;
   transform: translateX(-50%);
 }
 #player img {
-  width: 200px;
+  width: 310px;
   image-rendering: pixelated;
 }
 
@@ -228,6 +228,11 @@ html {
   letter-spacing: 2px;
   text-decoration: underline;
 }
+
+/* #userScore {
+  color: #ffffff;
+  text-shadow: 4px 4px 0px #ff0000;
+} */
 
 /* 실제 점수 숫자 디자인 */
 #finalScoreText {
