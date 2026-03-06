@@ -7,7 +7,6 @@ html {
   height: 100%;
   font-family: 'Galmuri11', sans-serif;
   overflow: hidden;
-  /* background: url('/image/backgroundImage.png') no-repeat center center/cover; */
   background: url('/image/backgroundPixel.png') no-repeat center center/cover;
 }
 
@@ -196,26 +195,26 @@ html {
 @keyframes slamDown {
   0% {
     opacity: 0;
-    transform: translateY(-100px) scale(2); /* 멀리서 아주 크게 시작 */
+    transform: translateY(-100px) scale(2);
   }
   70% {
-    transform: translateY(0) scale(0.9); /* 바닥에 닿으며 살짝 눌림 */
+    transform: translateY(0) scale(0.9);
   }
   100% {
     opacity: 1;
-    transform: translateY(0) scale(1); /* 원래 크기로 고정 */
+    transform: translateY(0) scale(1);
   }
 }
 
 /* 점수판 전체 컨테이너 */
 #scoreBoard {
-  background-color: #222; /* 어두운 전광판 느낌 */
-  border: 6px solid #ffcc00; /* 금색 픽셀 테두리 */
+  background-color: #222;
+  border: 6px solid #ffcc00;
   padding: 50px 80px;
   text-align: center;
   box-shadow:
     10px 10px 0px #000,
-    /* 픽셀 그림자 */ inset 0 0 20px rgba(255, 204, 0, 0.2); /* 안쪽 은은한 광택 */
+    inset 0 0 20px rgba(255, 204, 0, 0.2);
   margin-top: -30px;
   width: 450px;
 }
@@ -247,7 +246,7 @@ html {
 
 /* 하단 칭찬 문구 */
 .rank-text {
-  color: #00ff00; /* 형광 초록색 (성공적인 느낌) */
+  color: #00ff00;
   font-size: 20px;
   margin-top: 10px;
   border-top: 2px dashed #444;
