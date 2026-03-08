@@ -1,9 +1,6 @@
 /*
  * [도라에몽 5초 퀴즈] 메인 로직
- * 1. 게임 상태 관리 (시작, 진행, 종료)
- * 2. 0.1초 단위의 소수점 타이머 구현
- * 3. 키보드 입력을 통한 캐릭터(진구) 이동
- * 4. 종료 시 위치 판정 및 퉁퉁이 엄마 등장 로직
+문제 시작 로직 및 노진구 위치기반 정답 확인 로직 구현
  */
 
 /* --- 1. DOM 요소 참조 --- */
@@ -15,74 +12,162 @@ const retryButton = document.getElementById('retryButton');
 const timerDisplay = document.getElementById('timer');
 const player = document.getElementById('player');
 
-/* 추가된 박스 요소들 */
-const successBox = document.getElementById('successBox');
-const failBox = document.getElementById('failBox');
+const successBox = document.getElementById('successBox'); // 참 잘했어요 박스
+const failBox = document.getElementById('failBox'); // 😱 퉁퉁이 엄마 박스
 const userScore = document.getElementById('userScore');
 
-/* --- 2. 게임 변수 --- */
+const questionText = document.getElementById('questionText');
+const doorLeftLabel = document.querySelector('#doorLeft .door-label');
+const doorRightLabel = document.querySelector('#doorRight .door-label');
+const maxScore = document.getElementById('maxScore');
+
+/* --- 2. 게임 변수 및 데이터 --- */
 let timeLeft = 5.0;
 let timerId = null;
-let playerPos = 50;
 let isGameActive = false;
+let isAnswered = false;
+let currentQ = 0;
+let score = 0;
 
-/* --- 3. 게임 시작 함수 --- */
+//  12문제 보관소(여기에 실제 문제 작성하면 됩니다!)
+const dummyQuestions = [
+  { q: '1번 문제 들어갈 곳', a1: '정답', a2: '오답', answer: 'left' },
+  { q: '2번 문제 들어갈 곳', a1: '오답', a2: '정답', answer: 'right' },
+  { q: '3번 문제 들어갈 곳', a1: '정답', a2: '오답', answer: 'left' },
+  { q: '4번 문제 들어갈 곳', a1: '정답', a2: '오답', answer: 'left' },
+  { q: '5번 문제 들어갈 곳', a1: '오답', a2: '정답', answer: 'right' },
+  { q: '6번 문제 들어갈 곳', a1: '정답', a2: '오답', answer: 'left' },
+  { q: '7번 문제 들어갈 곳', a1: '오답', a2: '정답', answer: 'right' },
+  { q: '8번 문제 들어갈 곳', a1: '정답', a2: '오답', answer: 'left' },
+  { q: '9번 문제 들어갈 곳', a1: '오답', a2: '정답', answer: 'right' },
+  { q: '10번 문제 들어갈 곳', a1: '정답', a2: '오답', answer: 'left' },
+  { q: '11번 문제 들어갈 곳', a1: '정답', a2: '오답', answer: 'left' },
+  { q: '12번 문제 들어갈 곳', a1: '정답', a2: '오답', answer: 'left' },
+];
+
+/* --- 3. [게임 초기화] --- */
+function initGame() {
+  currentQ = 0;
+  score = 0;
+
+  dummyQuestions.sort(function () {
+    return Math.random() - 0.5;
+  });
+
+  startGame();
+}
+
+/* --- 4. 게임(한 문제) 시작 함수 --- */
 function startGame() {
+  if (questionText) questionText.innerText = dummyQuestions[currentQ].q;
+  if (doorLeftLabel) doorLeftLabel.innerText = dummyQuestions[currentQ].a1;
+  if (doorRightLabel) doorRightLabel.innerText = dummyQuestions[currentQ].a2;
+
   timeLeft = 5.0;
-  playerPos = 50;
   isGameActive = true;
+  isAnswered = false;
 
   startPage.classList.add('hidden');
   resultPage.classList.add('hidden');
   gamePage.classList.remove('hidden');
 
-  /* 결과 박스들 미리 숨기기 */
   successBox.classList.add('hidden');
   failBox.classList.add('hidden');
 
-  player.style.left = playerPos + '%';
+  player.style.transition = 'none';
+  player.style.left = '50%';
+
+  if (timerId) clearInterval(timerId);
 
   timerId = setInterval(() => {
     timeLeft -= 0.1;
     if (timeLeft <= 0) {
       timeLeft = 0;
-      endGame(); /* 0초가 되면 종료 함수 실행 */
+      timerDisplay.innerText = timeLeft.toFixed(1);
+
+      if (!isAnswered) endGame('none');
+    } else {
+      timerDisplay.innerText = timeLeft.toFixed(1);
     }
-    timerDisplay.innerText = timeLeft.toFixed(1);
   }, 100);
 }
 
-/* --- 4. 게임 종료 및 결과 판정 (중요!) --- */
-function endGame() {
+/* --- 5. 게임 종료 및 결과 판정 ---  위치기반 정답확인 함수*/
+function endGame(chosenDirection) {
   isGameActive = false;
   clearInterval(timerId);
 
-  gamePage.classList.add('hidden');
-  resultPage.classList.remove('hidden');
+  let correctDoor = dummyQuestions[currentQ].answer;
 
-  /* 판정: 진구가 왼쪽(단팥빵, 40% 미만)에 있는지 확인 */
-  if (playerPos < 40) {
-    /* 정답인 경우: 성공 박스 보여주기 */
-    if (userScore) userScore.innerText = '12';
-    successBox.classList.remove('hidden');
-    failBox.classList.add('hidden');
-  } else {
-    /* 오답이거나 시간 초과인 경우: 실패 박스(퉁퉁이 엄마) 보여주기 */
-    successBox.classList.add('hidden');
-    failBox.classList.remove('hidden');
+  // 1. 시간 초과일 경우
+  if (chosenDirection === 'none') {
+    // 팝업창 삭제 완료! 바로 퉁퉁이 엄마 화면으로 넘어갑니다.
+    showResultPage(false);
+    return;
+  }
+
+  // 2. 정답일 경우
+  if (chosenDirection === correctDoor) {
+    score++;
+    currentQ++;
+
+    if (currentQ < dummyQuestions.length) {
+      startGame();
+    } else {
+      // 12문제 올클리어!
+      showResultPage(true);
+    }
+  }
+  // 3. 오답일 경우
+  else {
+    // 팝업창 삭제 완료! 바로 퉁퉁이 엄마 화면으로 넘어갑니다.
+    showResultPage(false);
   }
 }
 
-/* --- 5. 이동 로직 --- */
-window.addEventListener('keydown', (e) => {
-  if (!isGameActive) return;
-  if (e.key === 'ArrowLeft') playerPos -= 5;
-  else if (e.key === 'ArrowRight') playerPos += 5;
+/* --- 6. 결과 화면 보여주기 --- */
+function showResultPage(isSuccess) {
+  gamePage.classList.add('hidden');
+  resultPage.classList.remove('hidden');
 
-  if (playerPos < 10) playerPos = 10;
-  if (playerPos > 90) playerPos = 90;
-  player.style.left = playerPos + '%';
+  if (userScore) userScore.innerText = score;
+  if (maxScore) maxScore.innerText = dummyQuestions.length;
+
+  //  성공/실패에 따라 박스 띄우기
+  if (isSuccess) {
+    successBox.classList.remove('hidden'); // 성공 박스 켜기
+    failBox.classList.add('hidden');
+  } else {
+    successBox.classList.add('hidden');
+    failBox.classList.remove('hidden'); // 퉁퉁이 엄마 박스 켜기!
+  }
+}
+
+/* --- 7. 이동 로직 --- */
+window.addEventListener('keydown', (e) => {
+  if (!isGameActive || isAnswered) return;
+
+  player.style.transition = 'left 0.15s linear';
+
+  if (e.key === 'ArrowLeft') {
+    isAnswered = true;
+    clearInterval(timerId);
+    player.style.left = '25%';
+
+    setTimeout(() => {
+      endGame('left');
+    }, 150);
+  } else if (e.key === 'ArrowRight') {
+    isAnswered = true;
+    clearInterval(timerId);
+    player.style.left = '75%';
+
+    setTimeout(() => {
+      endGame('right');
+    }, 150);
+  }
 });
 
-startButton.addEventListener('click', startGame);
-retryButton.addEventListener('click', startGame);
+/* --- 8. 이벤트 리스너 --- */
+startButton.addEventListener('click', initGame);
+retryButton.addEventListener('click', initGame);

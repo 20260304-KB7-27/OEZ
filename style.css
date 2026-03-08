@@ -68,14 +68,20 @@ html {
   width: 100%;
   image-rendering: pixelated;
 }
+
+/* 🌟 문제 텍스트 정중앙 완벽 정렬 🌟 */
 #questionText {
   position: absolute;
   width: 80%;
   text-align: center;
-  font-size: 24px;
+  font-size: 25px;
   color: #000;
   margin: 0;
+  top: 46%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
+
 #world {
   position: relative;
   width: 100%;
@@ -110,7 +116,7 @@ html {
 }
 #player {
   position: absolute;
-  bottom: 10%;
+  bottom: -7%;
   left: 50%;
   transform: translateX(-50%);
   transition: left 0.1s ease-out;
@@ -118,6 +124,55 @@ html {
 #player img {
   width: 310px;
   image-rendering: pixelated;
+}
+
+.end-title {
+  font-size: 100px;
+  color: #ff2323;
+  text-shadow: 4px 4px 0px #000;
+  z-index: 10;
+}
+
+/* 점수판 전체 컨테이너 */
+#scoreBoard {
+  background-color: #222;
+  border: 6px solid #ffcc00;
+  padding: 50px 80px;
+  text-align: center;
+  box-shadow:
+    10px 10px 0px #000,
+    inset 0 0 20px rgba(255, 204, 0, 0.2);
+  margin-top: -30px;
+  width: 450px;
+}
+
+/* 상단 라벨 (FINAL SCORE) */
+.score-label {
+  color: #ffcc00;
+  font-size: 24px;
+  margin-bottom: 15px;
+  letter-spacing: 2px;
+  text-decoration: underline;
+}
+
+/* 실제 점수 숫자 디자인 */
+#finalScoreText {
+  font-size: 80px;
+  color: #fff;
+  margin: 20px 0;
+  text-shadow:
+    4px 4px 0px #ff0000,
+    8px 8px 0px #000;
+  font-weight: bold;
+}
+
+/* 하단 칭찬 문구 */
+.rank-text {
+  color: #00ff00;
+  font-size: 20px;
+  margin-top: 10px;
+  border-top: 2px dashed #444;
+  padding-top: 15px;
 }
 
 /* --- 3. 결과창 및 퉁퉁이 엄마 (핵심 수정) --- */
@@ -131,53 +186,60 @@ html {
   position: relative;
 }
 
-/* 퉁퉁이 엄마 이미지: 선명하고(opacity: 1) 위협적이게 강조 (계층 상향) */
+/* 성공 박스: 버튼은 냅두고 글씨+점수판만 통째로 위로 80px 올립니다! */
+#successBox {
+  transform: translateY(-80px);
+}
+
+/* 실패 박스: 퉁퉁이네 전체를 살짝만 내리거나 원하시는 대로 조절 가능합니다! */
+#failBox {
+  transform: translateY(30px);
+}
+
+/* 퉁퉁이 엄마 이미지 */
 .mom-img {
-  width: 1000px; /* 거대 사이즈 유지 */
+  width: 1000px;
   image-rendering: pixelated;
   position: absolute;
   top: 43%;
   left: 45%;
   transform: translate(-50%, -50%);
-  z-index: 50; /* 버튼보다 앞에 오게 설정 (종전 z-index: 1) */
-  opacity: 1; /* 완전 불투명하게 수정 (종전 0.9) */
+  z-index: 50;
+  opacity: 1;
 }
 
-/* 엄마 말풍선: [최우선] 그 무엇보다도 최상위에 띄움 */
 .mom-bubble {
   position: relative;
-  z-index: 200; /* 엄마 이미지(50)나 버튼(100)보다 훨씬 높게 설정 */
+  z-index: 200;
   background: white;
   border: 4px solid red;
-  padding: 20px 40px; /* 크기 키움 */
-  font-size: 40px; /* 폰트 키움 */
+  padding: 20px 40px;
+  font-size: 40px;
   color: red;
   font-weight: bold;
   border-radius: 50px;
-  box-shadow: 8px 8px 0px black; /* 그림자 강조 */
-  margin-top: -50px; /* 위치를 위쪽으로 조정하여 최상위에 띄움 */
-  margin-bottom: 350px; /* 버튼과의 여백 확보 */
+  box-shadow: 8px 8px 0px black;
+  margin-top: -10px;
+  margin-bottom: 30px; /* 🌟 350px -> 30px로 수정 완료! */
+  transform: translateY(-35px);
 }
 
-.end-title {
-  font-size: 100px;
-  color: #ff2323;
-  text-shadow: 4px 4px 0px #000;
-  z-index: 10;
-}
+/* 게임 종료 글씨: 퉁퉁이 엄마 발밑으로 쑥 내렸습니다*/
 .fail-text {
   color: #ff2323;
-  margin-top: 10px;
+  margin-top: 250px; /* 엄마 밑으로! */
+  position: relative;
+  z-index: 60; /* 엄마보다 앞으로! */
 }
 
-/* --- 4. 다시 하기 버튼 (계층 하향) --- */
+/* --- 4. 다시 하기 버튼 --- */
 .pixel-btn {
   all: unset;
   position: absolute;
-  bottom: 50px;
+  bottom: 50px; /* 🌟 버튼은 냅두라고 하셔서 원래 자리에 찰싹 붙여두었습니다 */
   left: 50%;
   transform: translateX(-50%);
-  z-index: 100; /* 말풍선(200)보다는 뒤에, 엄마 이미지(50)보다는 앞에 오게 설정 (또는 엄마 이미지보다 뒤로 가고 싶으면 z-index: 30) */
+  z-index: 100;
   padding: 20px 50px;
   background-color: #0093d3;
   color: white;
@@ -185,8 +247,28 @@ html {
   cursor: pointer;
   border: 4px solid black;
   text-align: center;
+  transition: transform 0.1s;
 }
+
 .pixel-btn:hover {
   background-color: #ffcc00;
   color: #000;
+  box-shadow:
+    inset -4px -4px 0px #cca300,
+    inset 4px 4px 0px #ffdb4d,
+    0 -4px 0 #000,
+    0 4px 0 #000,
+    -4px 0 0 0 #000,
+    4px 0 0 0 #000;
+}
+
+/* 버튼 클릭 시 4px만 예쁘게 눌리는 효과! */
+.pixel-btn:active {
+  transform: translateX(-50%) translateY(4px);
+  box-shadow:
+    inset 4px 4px 0px #cca300,
+    0 -4px 0 #000,
+    0 4px 0 #000,
+    -4px 0 0 0 #000,
+    4px 0 0 0 #000;
 }
