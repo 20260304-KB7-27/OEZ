@@ -3,6 +3,9 @@
 문제 시작 로직 및 노진구 위치기반 정답 확인 로직 구현
  */
 
+// 퀴즈 데이터
+import { dummyQuestions } from './quetions.js';
+
 /* --- 1. DOM 요소 참조 --- */
 const startPage = document.getElementById('startPage');
 const gamePage = document.getElementById('gamePage');
@@ -28,22 +31,6 @@ let isGameActive = false;
 let isAnswered = false;
 let currentQ = 0;
 let score = 0;
-
-//  12문제 보관소(여기에 실제 문제 작성하면 됩니다!)
-const dummyQuestions = [
-  { q: '1번 문제 들어갈 곳', a1: '정답', a2: '오답', answer: 'left' },
-  { q: '2번 문제 들어갈 곳', a1: '오답', a2: '정답', answer: 'right' },
-  { q: '3번 문제 들어갈 곳', a1: '정답', a2: '오답', answer: 'left' },
-  { q: '4번 문제 들어갈 곳', a1: '정답', a2: '오답', answer: 'left' },
-  { q: '5번 문제 들어갈 곳', a1: '오답', a2: '정답', answer: 'right' },
-  { q: '6번 문제 들어갈 곳', a1: '정답', a2: '오답', answer: 'left' },
-  { q: '7번 문제 들어갈 곳', a1: '오답', a2: '정답', answer: 'right' },
-  { q: '8번 문제 들어갈 곳', a1: '정답', a2: '오답', answer: 'left' },
-  { q: '9번 문제 들어갈 곳', a1: '오답', a2: '정답', answer: 'right' },
-  { q: '10번 문제 들어갈 곳', a1: '정답', a2: '오답', answer: 'left' },
-  { q: '11번 문제 들어갈 곳', a1: '정답', a2: '오답', answer: 'left' },
-  { q: '12번 문제 들어갈 곳', a1: '정답', a2: '오답', answer: 'left' },
-];
 
 /* --- 3. [게임 초기화] --- */
 function initGame() {
