@@ -1,5 +1,5 @@
-<!-- 
- 1. 페이지 전환 방법
+<!--
+  1. 페이지 전환 방법
   - 모든 페이지(startPage, gamePage, resultPage)는 기본적으로 한 화면에 겹쳐 있습니다.
   - .hidden 클래스를 JS의 classList.add('hidden') 또는 classList.remove('hidden')를 사용해 제어하면 페이지 전환이 가능합니다.
     예: 시작 버튼 클릭 시 startPage에 hidden 추가, gamePage에서 hidden 제거
@@ -25,48 +25,54 @@
   <body>
     <div id="startPage" class="page">
       <h1 class="main-title">5초 준다!!</h1>
-
       <button type="button" id="startButton" class="pixel-btn">
         게임 시작
       </button>
     </div>
 
     <div id="gamePage" class="page hidden">
-      <div id="timer">5</div>
+      <div id="timer">5.0</div>
       <div id="questionBox">
-        <img src="/image/bubble.png" alt="말풍선" class="bubble-img" />
+        <img src="./image/bubble.png" alt="말풍선" class="bubble-img" />
         <h2 id="questionText">도라에몽이 가장 좋아하는 음식은?</h2>
       </div>
 
       <div id="world">
         <div id="doorLeft" class="door-wrapper">
           <div class="door-label">단팥빵</div>
-          <img src="/image/doorPixel.png" alt="문" />
+          <img src="./image/doorPixel.png" alt="문" />
         </div>
         <div id="doorRight" class="door-wrapper">
           <div class="door-label">피자</div>
-          <img src="/image/doorPixel.png" alt="문" />
+          <img src="./image/doorPixel.png" alt="문" />
         </div>
         <div id="player">
-          <img src="/image/realJingoo.png" alt="진구" />
+          <img src="./image/realJingoo.png" alt="진구" />
         </div>
       </div>
     </div>
 
     <div id="resultPage" class="page hidden">
-      <div class="result-box">
-        <h1 class="end-title small">게임 종료</h1>
+      <div id="successBox" class="result-box hidden">
+        <h1 class="end-title">참 잘했어요!</h1>
         <div id="scoreBoard">
           <div class="score-label">FINAL SCORE</div>
-          <div id="finalScoreText">
-            <span id="userScore">0</span> / <span id="maxScore">12</span>
-          </div>
-          <div class="rank-text">참 잘했어요! ^_^ b</div>
+          <div id="finalScoreText"><span id="userScore">0</span> / 12</div>
+          <div class="rank-text">도라에몽이 기뻐합니다!</div>
         </div>
-        <button type="button" id="retryButton" class="pixel-btn">
-          다시 하기
-        </button>
       </div>
+
+      <div id="failBox" class="result-box hidden">
+        <img src="./image/TungtungMom.png" alt="퉁퉁이 엄마" class="mom-img" />
+        <div class="mom-bubble">"공부 다시해라!!!"</div>
+        <h1 class="end-title fail-text">게임 종료</h1>
+      </div>
+
+      <button type="button" id="retryButton" class="pixel-btn">
+        다시 하기
+      </button>
     </div>
+
+    <script src="script.js"></script>
   </body>
 </html>
