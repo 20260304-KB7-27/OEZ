@@ -209,12 +209,10 @@ html {
   position: relative;
 }
 
-/* 성공 박스: 버튼은 냅두고 글씨+점수판만 통째로 위로 80px 올립니다! */
 #successBox {
   transform: translateY(-80px);
 }
 
-/* 실패 박스: 퉁퉁이네 전체를 살짝만 내리거나 원하시는 대로 조절 가능합니다! */
 #failBox {
   transform: translateY(30px);
 }
@@ -250,16 +248,16 @@ html {
 /* 게임 종료 글씨: 퉁퉁이 엄마 발밑으로 쑥 내렸습니다*/
 .fail-text {
   color: #ff2323;
-  margin-top: 250px; /* 엄마 밑으로! */
+  margin-top: 250px;
   position: relative;
-  z-index: 60; /* 엄마보다 앞으로! */
+  z-index: 60;
 }
 
 /* --- 4. 다시 하기 버튼 --- */
 .pixel-btn {
   all: unset;
   position: absolute;
-  bottom: 7%; /* 🌟 버튼은 냅두라고 하셔서 원래 자리에 찰싹 붙여두었습니다 */
+  bottom: 7%;
   left: 50%;
   transform: translateX(-50%);
   z-index: 100;
@@ -295,36 +293,27 @@ html {
     -4px 0 0 0 #000,
     4px 0 0 0 #000;
 }
+
 .doraWrap {
-  position: relative;
-  left: -50px;
-  bottom: -20px;
-  width: 1300px;
-  height: 500px;
-}
-
-.jingooWrap {
-  position: relative;
-  right: 150px;
-  bottom: -20px;
-  width: 1300px;
-  height: 500px;
-}
-
-/* 도라에몽 (왼쪽) */
-.doraImage {
   position: absolute;
-  bottom: -15%;
-  left: 15%;
+  left: 150px;
+  bottom: 0px;
+  width: 550px;
+  height: 500px;
   z-index: 100;
 }
 
-/* 도라에몽 텍스트 박스 전체 위치 */
+.doraImage {
+  position: absolute;
+  bottom: 105px;
+  left: 0;
+}
+
 .doraText {
   color: white;
   position: absolute;
-  bottom: 55%;
-  left: 36%;
+  bottom: 38%;
+  left: 50%;
   text-align: left;
   font-weight: bold;
   font-size: 20px;
@@ -352,20 +341,26 @@ html {
   margin-top: -5px;
 }
 
-/* 진구 (오른쪽) */
-.jingooImage {
+.jingooWrap {
   position: absolute;
-  bottom: 0;
-  right: 0px;
+  right: 150px;
+  bottom: 0px;
+  width: 500px;
+  height: 600px;
   z-index: 100;
 }
 
-/* 진구 텍스트 박스 전체 위치 */
+.jingooImage {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
 .jingooText {
   color: white;
   position: absolute;
-  bottom: 150%;
-  right: 18%;
+  bottom: 44%;
+  right: 48%;
   text-align: right;
   font-weight: bold;
   font-size: 20px;
