@@ -53,7 +53,22 @@ export const dummyQuestions = [
     a2: 'Promise',
     answer: 'right',
   },
-  { q: '10번 문제 들어갈 곳', a1: '정답', a2: '오답', answer: 'left' },
-  { q: '11번 문제 들어갈 곳', a1: '정답', a2: '오답', answer: 'left' },
-  { q: '12번 문제 들어갈 곳', a1: '정답', a2: '오답', answer: 'left' },
+  {
+    q: 'background 단축 속성을 사용할 때, 특정 속성값을 생략하면 해당 속성은 어떻게 변하는가?',
+    a1: '이전 선언 유지',
+    a2: '기본값으로 초기화',
+    answer: 'right',
+  },
+  {
+    q: '배경색(background-color)이 지정되었을 때, 이 색상이 시각적으로 채워지는 최대 범위는 어디까지인가?',
+    a1: 'padding 영역까지',
+    a2: 'border 영역까지 ',
+    answer: 'right',
+  },
+  {
+    q: '부모 요소의 폰트 크기가 변경될 때, 자식 요소에서 부모의 현재 폰트 크기를 기준으로 자기 자신의 크기를 결정하는 단위는?',
+    a1: 'em',
+    a2: 'rem',
+    answer: 'left',
+  },
 ];
