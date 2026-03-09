@@ -295,11 +295,26 @@ html {
     -4px 0 0 0 #000,
     4px 0 0 0 #000;
 }
+.doraWrap {
+  position: relative;
+  left: -50px;
+  bottom: -20px;
+  width: 1300px;
+  height: 500px;
+}
+
+.jingooWrap {
+  position: relative;
+  right: 150px;
+  bottom: -20px;
+  width: 1300px;
+  height: 500px;
+}
 
 /* 도라에몽 (왼쪽) */
 .doraImage {
   position: absolute;
-  bottom: 20%;
+  bottom: -15%;
   left: 15%;
   z-index: 100;
 }
@@ -308,8 +323,8 @@ html {
 .doraText {
   color: white;
   position: absolute;
-  bottom: 30%;
-  left: 35%;
+  bottom: 55%;
+  left: 36%;
   text-align: left;
   font-weight: bold;
   font-size: 20px;
@@ -341,7 +356,7 @@ html {
 .jingooImage {
   position: absolute;
   bottom: 0;
-  right: 15%;
+  right: 0px;
   z-index: 100;
 }
 
@@ -349,8 +364,8 @@ html {
 .jingooText {
   color: white;
   position: absolute;
-  bottom: 35%;
-  right: 32%;
+  bottom: 150%;
+  right: 18%;
   text-align: right;
   font-weight: bold;
   font-size: 20px;
