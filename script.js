@@ -32,14 +32,14 @@ let isAnswered = false;
 let currentQ = 0;
 let score = 0;
 // 타이머 효과음
-const timerSound = new Audio('/image/TimerFixed.mp3');
+const timerSound = new Audio('./image/TimerFixed.mp3');
 timerSound.preload = 'auto';
 // 게임 성공 효과음 (모든 문제 맞췄을 때)
-const gameSuccessSound = new Audio('/image/gameClear.mp3');
+const gameSuccessSound = new Audio('./image/gameClear.mp3');
 gameSuccessSound.preload = 'auto';
 
 // 게임 오버 효과음 (오답 또는 시간초과)b
-const gameOverSound = new Audio('/image/gameOver.mp3');
+const gameOverSound = new Audio('./image/gameOver.mp3');
 gameOverSound.preload = 'auto';
 
 /* --- 3. [게임 초기화] --- */
