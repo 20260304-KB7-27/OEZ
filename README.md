@@ -39,7 +39,7 @@
 <br>
 
 ## 🛠 기술 스택 (Tech Stack)
-- **Frontend**: `HTML5`, `CSS3`, `Vanilla JavaScript`
+- **Frontend**: `HTML5`, `CSS3`, `JavaScript`
 - **Font**: [Galmuri (갈무리)](https://quiple.dev/galmuri)
 
 <br>
