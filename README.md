@@ -5,7 +5,7 @@
 
 <br>
 
-## 🌐[![배포 사이트 바로가기](https://img.shields.io/badge/Play_Game-FFCC00?style=for-the-badge&logo=play&logoColor=black)](https://20260304-kb7-27.github.io/OEZ/)
+## 🌐 [https://20260304-kb7-27.github.io/OEZ/](https://20260304-kb7-27.github.io/OEZ/)
 
 
 <br>
