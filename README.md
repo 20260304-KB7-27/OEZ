@@ -1,17 +1,12 @@
-# OEZ
-Oh~ EZ한 삶
-
-# OEZ 프로젝트 사용법
-1. 먼저 가지고 있는 파일들을 전부 받는다.
-2. 만약 js, css, html 파일들에서 /image라고 되어있으면 ./image로 바꾼다.
-3. html 파일에서 라이브 서버를 연다.(라이브 서버가 안 열릴경우 https://127.0.0.1:5500 혹은 https://localhost:5500 쳐서 들어간다.)
-4. 메인 화면이 뜨면 시작하기 버튼을 누르고 퀴즈를 푼다.
-5. 다 맞혀주길 바란다.
-
 # 🚪 5초 준다! (OEZ Project)
 
 > **"제한 시간 5초! 방향키를 움직여 정답의 문으로 들어가라!"**
 > 도라에몽 픽셀 아트와 함께하는 아슬아슬 웹/CS 지식 퀴즈 게임 ⏳
+
+<br>
+
+## 🌐[![배포 사이트 바로가기](https://img.shields.io/badge/Play_Game-FFCC00?style=for-the-badge&logo=play&logoColor=black)](https://20260304-kb7-27.github.io/OEZ/)
+
 
 <br>
 
