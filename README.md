@@ -5,7 +5,8 @@
 
 <br>
 
-## 🌐 [https://20260304-kb7-27.github.io/OEZ/](https://20260304-kb7-27.github.io/OEZ/)
+## 🌐 배포 링크
+> 👉 [https://20260304-kb7-27.github.io/OEZ/](https://20260304-kb7-27.github.io/OEZ/)
 
 
 <br>
