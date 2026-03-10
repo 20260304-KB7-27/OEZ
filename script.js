@@ -31,11 +31,28 @@ let isGameActive = false;
 let isAnswered = false;
 let currentQ = 0;
 let score = 0;
+// 타이머 효과음
+const timerSound = new Audio('/image/TimerFixed.mp3');
+timerSound.preload = 'auto';
+// 게임 성공 효과음 (모든 문제 맞췄을 때)
+const gameSuccessSound = new Audio('/image/gameClear.mp3');
+gameSuccessSound.preload = 'auto';
+
+// 게임 오버 효과음 (오답 또는 시간초과)b
+const gameOverSound = new Audio('/image/gameOver.mp3');
+gameOverSound.preload = 'auto';
 
 /* --- 3. [게임 초기화] --- */
 function initGame() {
   currentQ = 0;
   score = 0;
+
+  // 결과 효과음이 재생 중이면 모두 정지 (빠르게 다시하기 눌렀을 때 겹침 방지)
+  gameOverSound.pause();
+  gameOverSound.currentTime = 0;
+
+  gameSuccessSound.pause();
+  gameSuccessSound.currentTime = 0;
 
   dummyQuestions.sort(function () {
     return Math.random() - 0.5;
@@ -51,6 +68,9 @@ function startGame() {
   if (doorRightLabel) doorRightLabel.innerText = dummyQuestions[currentQ].a2;
 
   timeLeft = 5.0;
+  // 타이머 소리 시작
+  timerSound.currentTime = 0;
+  timerSound.play();
   isGameActive = true;
   isAnswered = false;
 
@@ -83,6 +103,9 @@ function startGame() {
 function endGame(chosenDirection) {
   isGameActive = false;
   clearInterval(timerId);
+  // 타이머 소리 정지
+  timerSound.pause();
+  timerSound.currentTime = 0;
 
   let correctDoor = dummyQuestions[currentQ].answer;
 
@@ -124,9 +147,17 @@ function showResultPage(isSuccess) {
   if (isSuccess) {
     successBox.classList.remove('hidden'); // 성공 박스 켜기
     failBox.classList.add('hidden');
+
+    // 게임 클리어 효과음 재생
+    gameSuccessSound.currentTime = 0;
+    gameSuccessSound.play();
   } else {
     successBox.classList.add('hidden');
     failBox.classList.remove('hidden'); // 퉁퉁이 엄마 박스 켜기!
+
+    // 게임 오버 효과음 재생
+    gameOverSound.currentTime = 0;
+    gameOverSound.play();
   }
 }
 
